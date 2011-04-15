@@ -646,8 +646,7 @@ False
     <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
     <property type="boolean" id="isrow" mode="w" >True</property>
     </object>
-    <?xml version="1.0"?>
-    <objects>
+
     <object id='backend_retry' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
     <property type="text" id="zendoc" mode="w" >Backend conn. retry</property>
     <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
