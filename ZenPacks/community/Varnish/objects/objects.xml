@@ -1,0 +1,685 @@
+<?xml version="1.0"?>
+<objects>
+<object id='/zport/dmd/Devices/Varnish' module='Products.ZenModel.DeviceClass' class='DeviceClass'>
+<property type="string" id="description" mode="w" >
+Put devices in this class to monitor their Varnish instances
+</property>
+<property visible="True" type="lines" id="zDeviceTemplates" >
+['Device', 'Varnish']
+</property>
+<property visible="True" type="boolean" id="zSnmpMonitorIgnore" >
+True
+</property>
+</object>
+<object id='/zport/dmd/Devices/rrdTemplates/Varnish' module='Products.ZenModel.RRDTemplate' class='RRDTemplate'>
+<property type="string" id="targetPythonClass" mode="w" >
+Products.ZenModel.Device
+</property>
+<tomanycont id='datasources'>
+<object id='Varnish' module='ZenPacks.community.Varnish.datasources.VarnishDataSource' class='VarnishDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+Varnish
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Status/Web
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="string" id="hostname" mode="w" >
+${dev/id}
+</property>
+<property type="string" id="ipAddress" mode="w" >
+${dev/manageIp}
+</property>
+<property type="int" id="port" mode="w" >
+80
+</property>
+<property type="boolean" id="useSsl" mode="w" >
+False
+</property>
+<property type="string" id="url" mode="w" >
+/status/varnish.txt
+</property>
+<property type="int" id="timeout" mode="w" >
+60
+</property>
+<property type="string" id="authentication" mode="w" >
+</property>
+<tomanycont id='datapoints'>
+    <object id='client_conn' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Client connections accepted</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='client_drop' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Connection dropped, no sess/wrk</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='client_req' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Client requests received</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='cache_hit' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Cache hits</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='cache_hitpass' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Cache hits for pass</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='cache_miss' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Cache misses</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='backend_conn' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Backend conn. success</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='backend_unhealthy' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Backend conn. not attempted</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='backend_busy' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Backend conn. too many</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='backend_fail' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Backend conn. failures</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='backend_reuse' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Backend conn. reuses</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='backend_toolate' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Backend conn. was closed</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='backend_recycle' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Backend conn. recycles</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='backend_unused' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Backend conn. unused</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='fetch_head' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Fetch head</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='fetch_length' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Fetch with Length</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='fetch_chunked' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Fetch chunked</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='fetch_eof' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Fetch EOF</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='fetch_bad' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Fetch had bad headers</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='fetch_close' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Fetch wanted close</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='fetch_oldhttp' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Fetch pre HTTP/1.1 closed</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='fetch_zero' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Fetch zero len</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='fetch_failed' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Fetch failed</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_sess_mem' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >  N struct sess_mem</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_sess' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >  N struct sess</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_object' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >  N struct object</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_vampireobject' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >  N unresurrected objects</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_objectcore' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >  N struct objectcore</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_objecthead' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >  N struct objecthead</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_smf' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >  N struct smf</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_smf_frag' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >  N small free smf</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_smf_large' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >  N large free smf</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_vbe_conn' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >  N struct vbe_conn</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_wrk' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >  N worker threads</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_wrk_create' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >N worker threads created</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_wrk_failed' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >N worker threads not created</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_wrk_max' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >N worker threads limited</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_wrk_queue' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >N queued work requests</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_wrk_overflow' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >N overflowed work requests</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_wrk_drop' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >N dropped work requests</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_backend' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >  N backends</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_expired' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >  N expired objects</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_lru_nuked' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >  N LRU nuked objects</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_lru_saved' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >  N LRU saved objects</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_lru_moved' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >  N LRU moved objects</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_deathrow' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >  N objects on deathrow</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='losthdr' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >HTTP header overflows</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_objsendfile' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Objects sent with sendfile</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_objwrite' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Objects sent with write</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_objoverflow' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Objects overflowing workspace</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='s_sess' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Total Sessions</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='s_req' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Total Requests</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='s_pipe' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Total pipe</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='s_pass' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Total pass</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='s_fetch' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Total fetch</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='s_hdrbytes' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Total header bytes</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='s_bodybytes' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Total body bytes</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='sess_closed' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Session Closed</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='sess_pipeline' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Session Pipeline</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='sess_readahead' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Session Read Ahead</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='sess_linger' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Session Linger</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='sess_herd' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Session herd</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='shm_records' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >SHM records</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='shm_writes' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >SHM writes</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='shm_flushes' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >SHM flushes due to overflow</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='shm_cont' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >SHM MTX contention</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='shm_cycles' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >SHM cycles through buffer</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='sm_nreq' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >allocator requests</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='sm_nobj' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >  outstanding allocations</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='sm_balloc' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >  bytes allocated</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='sm_bfree' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >  bytes free</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='sma_nreq' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >SMA allocator requests</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='sma_nobj' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >  SMA outstanding allocations</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='sma_nbytes' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >  SMA outstanding bytes</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='sma_balloc' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >  SMA bytes allocated</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='sma_bfree' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >  SMA bytes free</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='sms_nreq' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >SMS allocator requests</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='sms_nobj' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >  SMS outstanding allocations</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='sms_nbytes' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >  SMS outstanding bytes</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='sms_balloc' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >  SMS bytes allocated</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='sms_bfree' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >  SMS bytes freed</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='backend_req' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Backend requests made</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_vcl' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >N vcl total</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_vcl_avail' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >N vcl available</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_vcl_discard' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >N vcl discarded</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_purge' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >  N total active purges</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_purge_add' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >N new purges added</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_purge_retire' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >N old purges deleted</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_purge_obj_test' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >N objects tested</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_purge_re_test' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >N regexps tested against</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='n_purge_dups' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >N duplicate purges removed</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='hcb_nolock' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >HCB Lookups without lock</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='hcb_lock' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >HCB Lookups with lock</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='hcb_insert' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >HCB Inserts</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='esi_parse' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Objects ESI parsed (unlock)</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='esi_errors' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >ESI parse errors (unlock)</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='accept_fail' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Accept failures</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='client_drop_late' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Connection dropped late</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='uptime' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Client uptime</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+    <?xml version="1.0"?>
+    <objects>
+    <object id='backend_retry' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >Backend conn. retry</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='dir_dns_lookups' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >DNS director lookups</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='dir_dns_failed' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >DNS director failed lookups</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='dir_dns_hit' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >DNS director cached lookups hit</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+    <object id='dir_dns_cache_full' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+    <property type="text" id="zendoc" mode="w" >DNS director full dnscache</property>
+    <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >GAUGE</property>
+    <property type="boolean" id="isrow" mode="w" >True</property>
+    </object>
+
+</tomanycont>
+</object>
+</tomanycont>
+</object>
+</objects>
