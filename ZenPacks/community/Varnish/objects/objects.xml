@@ -10,7 +10,7 @@
         COMMAND
         </property>
         <property type="string" id="commandTemplate" mode="w" >
-        ${here/ZenPackManager/packs/ZenPacks.community.Varnish/path}/libexec/check_varnish.py -N -H ${dev/manageIp}
+        ${here/ZenPackManager/packs/ZenPacks.community.Varnish/path}/libexec/check_varnish.py -H ${dev/manageIp}
         </property>
         <property type="boolean" id="enabled" mode="w" >
         True
