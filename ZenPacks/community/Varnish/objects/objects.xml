@@ -5,7 +5,7 @@
     Products.ZenModel.Device
     </property>
     <tomanycont id='datasources'>
-        <object id='Varnish' module='ZenPacks.community.Varnish.datasources.VarnishDataSource' class='VarnishDataSource'>
+        <object id='Varnish' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
         <property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
         Command
         </property>
