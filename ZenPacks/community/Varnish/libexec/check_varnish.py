@@ -121,5 +121,14 @@ if __name__ == "__main__":
                               options.ipAddress, options.url,
                               options.useSsl, options.authentication)
 
-    result = cmd.run()
-    sys.exit(result)
+    try:
+        result = cmd.run()
+    except urllib2.HTTPError:
+        print 'HTTP Error'
+        sys.exit(1)
+
+    if result:
+        print result
+        sys.exit(0)
+    else:
+        sys.exit(1)
