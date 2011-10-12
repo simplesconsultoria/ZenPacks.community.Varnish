@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<configure xmlns="http://namespaces.zope.org/zope">
-
-  <adapter factory=".info.VarnishDataSourceInfo"
-           for=".datasources.VarnishDataSource.VarnishDataSource"
-           provides=".interfaces.IVarnishDataSourceInfo"
-           />
-
-</configure>
