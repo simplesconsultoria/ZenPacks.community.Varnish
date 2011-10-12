@@ -44,7 +44,7 @@ class ZenossVarnishPlugin:
 
     def formatNagios(self, value):
         """OK|foo=0.814667s;;;0.000000 bar=30737B;;;0"""
-        base = 'Ok |'
+        base = 'OK |'
         for key in STATS:
             line = value.get(key, None)
             if not line:
