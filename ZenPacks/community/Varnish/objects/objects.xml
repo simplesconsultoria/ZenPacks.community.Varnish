@@ -109,6 +109,14 @@
                 True
                 </property>
             </object>
+            <object id='n_lru_nuked' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+                <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >
+                GAUGE
+                </property>
+                <property type="boolean" id="isrow" mode="w" >
+                True
+                </property>
+            </object>
             <object id='cache_hit' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
                 <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >
                 GAUGE
