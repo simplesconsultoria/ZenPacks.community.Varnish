@@ -7,7 +7,7 @@ from Products.ZenUtils.Utils import binPath
 
 class VarnishDataSource(ZenPackPersistence, RRDDataSource.RRDDataSource):
 
-    VARNISH_MONITOR = 'Varnish'
+    VARNISH_MONITOR = 'VarnishMonitor'
 
     ZENPACKID = 'ZenPacks.community.Varnish'
 
@@ -38,7 +38,6 @@ class VarnishDataSource(ZenPackPersistence, RRDDataSource.RRDDataSource):
 
     _relations = RRDDataSource.RRDDataSource._relations + (
         )
-
 
     factory_type_information = (
     {

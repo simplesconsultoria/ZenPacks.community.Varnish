@@ -16,13 +16,11 @@ class VarnishDataSourceInfo(RRDDataSourceInfo):
     url = ProxyProperty('url')
     basicAuthUser = ProxyProperty('basicAuthUser')
     basicAuthPass = ProxyProperty('basicAuthPass')
-    
+
     @property
     def testable(self):
         """
         We can NOT test this datsource against a specific device
         """
         return False
-    
-
 

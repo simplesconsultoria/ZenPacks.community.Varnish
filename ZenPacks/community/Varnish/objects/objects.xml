@@ -9,8 +9,8 @@
         <property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
         COMMAND
         </property>
-        <property type="string" id="commandTemplate" mode="w" >
-        ${here/ZenPackManager/packs/ZenPacks.community.Varnish/path}/libexec/check_varnish.py
+        <property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+        VarnishMonitor
         </property>
         <property type="boolean" id="enabled" mode="w" >
         True
