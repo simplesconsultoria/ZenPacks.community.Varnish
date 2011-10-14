@@ -5,12 +5,12 @@
     Products.ZenModel.Device
     </property>
     <tomanycont id='datasources'>
-        <object id='Varnish' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+        <object id='Varnish' module='ZenPacks.community.Varnish.datasources.VarnishDataSource' class='VarnishDataSource'>
         <property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
         COMMAND
         </property>
         <property type="string" id="commandTemplate" mode="w" >
-        ${here/ZenPackManager/packs/ZenPacks.community.Varnish/path}/libexec/check_varnish.py -H ${dev/manageIp}
+        ${here/ZenPackManager/packs/ZenPacks.community.Varnish/path}/libexec/check_varnish.py
         </property>
         <property type="boolean" id="enabled" mode="w" >
         True
