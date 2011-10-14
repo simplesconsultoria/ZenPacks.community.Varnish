@@ -42,8 +42,6 @@
         <property type="int" id="timeout" mode="w" >
         60
         </property>
-        <property type="string" id="authentication" mode="w" >
-        </property>
         <tomanycont id='datapoints'>
             <object id='n_backend' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
                 <property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >
