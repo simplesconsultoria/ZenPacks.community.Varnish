@@ -7,12 +7,12 @@ from Products.ZenUtils.Utils import binPath
 
 class VarnishDataSource(ZenPackPersistence, RRDDataSource.RRDDataSource):
 
-    HTTP_MONITOR = 'Varnish'
+    VARNISH_MONITOR = 'Varnish'
 
     ZENPACKID = 'ZenPacks.community.Varnish'
 
-    sourcetypes = (HTTP_MONITOR, )
-    sourcetype = HTTP_MONITOR
+    sourcetypes = (VARNISH_MONITOR, )
+    sourcetype = VARNISH_MONITOR
 
     timeout = 60
     eventClass = '/Status/Web'
@@ -60,7 +60,7 @@ class VarnishDataSource(ZenPackPersistence, RRDDataSource.RRDDataSource):
         RRDDataSource.RRDDataSource.__init__(self, id, title, buildRelations)
 
     def getDescription(self):
-        if self.sourcetype == self.HTTP_MONITOR:
+        if self.sourcetype == self.VARNISH_MONITOR:
             return self.ipAddress + self.url
         return RRDDataSource.RRDDataSource.getDescription(self)
 
