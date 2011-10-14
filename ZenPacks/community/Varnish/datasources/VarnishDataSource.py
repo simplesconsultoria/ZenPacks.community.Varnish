@@ -67,7 +67,7 @@ class VarnishDataSource(ZenPackPersistence, RRDDataSource.RRDDataSource):
         return True
 
     def getCommand(self, context):
-        parts = [binPath('check_http')]
+        parts = [binPath('check_varnish')]
         if self.hostname:
             parts.append('-H %s' % self.hostname)
         if self.ipAddress:
