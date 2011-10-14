@@ -1,22 +1,22 @@
 <?xml version="1.0"?>
 <objects>
 <object id='/zport/dmd/Devices/Varnish' module='Products.ZenModel.DeviceClass' class='DeviceClass'>
-<property type="string" id="description" mode="w" >
-Put devices in this class to monitor them for Ping, DNS forward lookups, and basic HTTP requests against a web server's root.
-</property>
-<property visible="True" type="lines" id="zDeviceTemplates" >
-['Device', 'Varnish']
-</property>
-<property visible="True" type="boolean" id="zSnmpMonitorIgnore" >
-True
-</property>
+    <property type="string" id="description" mode="w" >
+    Put devices in this class to monitor their Varnish instances
+    </property>
+    <property visible="True" type="lines" id="zDeviceTemplates" >
+    ['Device', 'VarnishMonitor']
+    </property>
+    <property visible="True" type="boolean" id="zSnmpMonitorIgnore" >
+    True
+    </property>
 </object>
-<object id='/zport/dmd/Devices/rrdTemplates/Varnish' module='Products.ZenModel.RRDTemplate' class='RRDTemplate'>
+<object id='/zport/dmd/Devices/rrdTemplates/VarnishMonitor' module='Products.ZenModel.RRDTemplate' class='RRDTemplate'>
     <property type="string" id="targetPythonClass" mode="w" >
     Products.ZenModel.Device
     </property>
     <tomanycont id='datasources'>
-        <object id='Varnish' module='ZenPacks.community.Varnish.datasources.VarnishDataSource' class='VarnishDataSource'>
+        <object id='VarnishMonitor' module='ZenPacks.community.Varnish.datasources.VarnishDataSource' class='VarnishDataSource'>
         <property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
         COMMAND
         </property>
