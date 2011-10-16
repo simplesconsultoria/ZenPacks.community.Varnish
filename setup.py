@@ -2,7 +2,7 @@
 # These variables are overwritten by Zenoss when the ZenPack is exported
 # or saved.  Do not modify them directly here.
 NAME = 'ZenPacks.community.Varnish'
-VERSION = '1.0.1'
+VERSION = '1.0.2'
 AUTHOR = 'Erico Andrei'
 LICENSE = 'GPL'
 NAMESPACE_PACKAGES = ['ZenPacks', 'ZenPacks.community']
@@ -49,8 +49,8 @@ setup(
     # with the binary egg.
     package_data = { 
          '': ['*.txt'],
-         NAME: ['objects/*','skins/*/*','services/*', 'reports/*/*',
-                'modeler/*/*', 'libexec/*'],
+         NAME: ['datasources/*','objects/*','skins/*/*','services/*', 
+                'reports/*/*', 'modeler/*/*', 'libexec/*'],
          },  
 
 

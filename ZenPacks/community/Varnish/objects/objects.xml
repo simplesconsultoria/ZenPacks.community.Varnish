@@ -7,9 +7,6 @@
     <tomanycont id='datasources'>
         <object id='VarnishMonitor' module='ZenPacks.community.Varnish.datasources.VarnishDataSource' class='VarnishDataSource'>
         <property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
-        COMMAND
-        </property>
-        <property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
         VarnishMonitor
         </property>
         <property type="boolean" id="enabled" mode="w" >
