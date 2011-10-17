@@ -103,12 +103,14 @@ if __name__ == "__main__":
                  help='Hostname of http server containing Varnish stat data')
     parser.add_option('-p', '--port', dest='port', default=80, type='int',
                  help='Port of http server')
-    parser.add_option('-i', '--ipAddress', dest='ipAddress',
+    parser.add_option('-I', '--ipAddress', dest='ipAddress',
                  help='IP Address http server')
     parser.add_option('-U', '--url', dest='url', default='/status/varnish.txt',
                  help='Path to Varnish Stats')
     parser.add_option('-s', '--useSsl', dest='useSsl', default=False,
                  help='Use SSL?')
+    parser.add_option('-t', '--timeout', dest='timeout',
+                 help='Timeout')
     parser.add_option('-a', '--authentication', dest='authentication',
                  help='Authentication')
     options, args = parser.parse_args()

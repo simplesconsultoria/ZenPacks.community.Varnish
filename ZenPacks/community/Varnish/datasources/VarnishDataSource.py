@@ -79,7 +79,7 @@ class VarnishDataSource(ZenPackPersistence, RRDDataSource.RRDDataSource):
         if self.useSsl:
             parts.append('-S')
         if self.url:
-            parts.append('-u %s' % self.url)
+            parts.append('-U %s' % self.url)
         if self.basicAuthUser or self.basicAuthPass:
             parts.append('-a %s:%s' % (self.basicAuthUser, self.basicAuthPass))
         cmd = ' '.join(parts)
