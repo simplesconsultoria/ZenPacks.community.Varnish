@@ -90,10 +90,21 @@ class VarnishDataSource(ZenPackPersistence, RRDDataSource.RRDDataSource):
         return cmd
 
     def addDataPoints(self):
-        if not self.datapoints._getOb('time', None):
-            self.manage_addRRDDataPoint('time')
-        if not self.datapoints._getOb('size', None):
-            self.manage_addRRDDataPoint('size')
+        data_points = ['uptime',
+                       'n_backend',
+                       'cache_hit',
+                       'cache_miss',
+                       'n_expired',
+                       'n_wrk',
+                       'n_wrk_failed',
+                       'n_wrk_max',
+                       'n_wrk_overflow',
+                       'n_wrk_drop',
+                       'n_object',
+                       'n_lru_nuked']
+        for datapoint in datapoints:
+            if not self.datapoints._getOb(datapoint, None):
+                self.manage_addRRDDataPoint(datapoint)
 
     def zmanage_editProperties(self, REQUEST=None):
         '''validation, etc'''
